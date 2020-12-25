@@ -169,4 +169,52 @@ public:
 			return out;
 		}
 	};
+	Graph& operator=(const Graph& right)
+	{
+		if (this == &right)
+			return *this;
+		this->size = right.size;
+		this->vertex = right.vertex;
+		this->edges = right.edges;
+		return this;
+	}
+	bool operator ==(const Graph& right)
+	{
+		if (this->size != right.size)
+			return false;
+		for (int i = 0; i < size; i++)
+		{
+			if (this->vertex[i].get_value() != right.vertex[i].get_value())
+				return false;
+		}
+		for (int i = 0; i < size; i++)
+		{
+			for (int g = 0; g < size; g++)
+			{
+				if (this->edges[i][g] != right.edges[i][g])
+					return false;
+			}
+		}
+		return true;
+	}
+	bool operator !=(const Graph& right)
+	{
+		return !(this == right);
+	}
+	bool operator >(const Graph& right)
+	{
+		return this->size > right.size;
+	}
+	bool operator>=(const Graph& right)
+	{
+		return this->size >= right.size;
+	}
+	bool operator<(const Graph& right)
+	{
+		return this->size < right.size;
+	}
+	bool operator<=(const Graph& right)
+	{
+		return this->size <= right.size;
+	}
 };
